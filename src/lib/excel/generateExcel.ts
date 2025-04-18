@@ -122,7 +122,7 @@ export const generateProjectExcel = async (projectData: ProjectWithData): Promis
     };
     
     // Add borders
-    sheet.eachRow({ includeEmpty: true }, (row, rowNumber) => {
+    sheet.eachRow({ includeEmpty: true }, (row) => {
       row.eachCell({ includeEmpty: true }, (cell) => {
         cell.border = {
           top: { style: 'thin' },

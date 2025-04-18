@@ -46,8 +46,13 @@ export default function SignUp() {
 
         router.push('/dashboard')
       }
-    } catch (error: any) {
-      setError(error.message || 'An error occurred during sign up')
+      catch (error: unknown) {
+        if (error instanceof Error) {
+          setError(error.message)
+        } else {
+          setError('An error occurred')
+        }
+      }
     } finally {
       setLoading(false)
     }
