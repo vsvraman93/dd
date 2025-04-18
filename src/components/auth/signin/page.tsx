@@ -27,18 +27,19 @@ export default function SignIn() {
       if (error) throw error
 
       router.push('/dashboard')
-    }catch (error: unknown) {
+    } catch (error) {
       if (error instanceof Error) {
         setError(error.message)
       } else {
-        setError('An error occurred')
+        setError('An error occurred during sign in')
       }
-    }
     } finally {
       setLoading(false)
     }
   }
 
+  // Rest of your component...
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-md">
