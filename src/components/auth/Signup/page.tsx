@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { UserRole } from '@/types/database'
 
 export default function SignUp() {
   const router = useRouter()
@@ -11,7 +12,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fullName, setFullName] = useState('')
-  const [role, setRole] = useState('client')
+  const [role, setRole] = useState<UserRole>('client')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -45,19 +46,12 @@ export default function SignUp() {
 
         router.push('/dashboard')
       }
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message)
-      } else {
-        setError('An error occurred during sign up')
-      }
+    } catch (error: any) {
+      setError(error.message || 'An error occurred during sign up')
     } finally {
       setLoading(false)
     }
   }
-
-  // Rest of your component...
-
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">

@@ -14,7 +14,9 @@ interface ProjectWithData extends Project {
     questions: (Question & {
       responses: (Response & {
         attachments: Attachment[];
-        comments: Comment[];
+        comments: (Comment & {
+          user_email?: string;
+        })[];
         user_email?: string;
       })[];
     })[];
@@ -122,7 +124,7 @@ export const generateProjectExcel = async (projectData: ProjectWithData): Promis
     };
     
     // Add borders
-    sheet.eachRow({ includeEmpty: true }, (row) => {
+    sheet.eachRow({ includeEmpty: true }, (row, rowNumber) => {
       row.eachCell({ includeEmpty: true }, (cell) => {
         cell.border = {
           top: { style: 'thin' },

@@ -120,13 +120,8 @@ export default function NewProject() {
       }
 
       router.push(`/projects/${project.id}`)
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(error.message)
-      } else {
-        setError('An error occurred')
-      }
-    }
+    } catch (error: any) {
+      setError(error.message || 'Failed to create project')
     } finally {
       setLoading(false)
     }

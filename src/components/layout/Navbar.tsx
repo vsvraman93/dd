@@ -1,15 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-//import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { useEffect, useState } from 'react'
 
 export default function Navbar() {
-  // Remove if not used
-  // const pathname = usePathname()
+  const pathname = usePathname()
   const supabase = createClient()
-  const [user, setUser] = useState<{email: string} | null>(null)
+  const [user, setUser] = useState<any>(null)
 
   useEffect(() => {
     const getUser = async () => {
