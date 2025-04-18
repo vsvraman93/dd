@@ -2,13 +2,14 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { useEffect, useState } from 'react'
 
 export default function Navbar() {
-  const pathname = usePathname()
+  // Remove if not used
+  // const pathname = usePathname()
   const supabase = createClient()
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{email: string} | null>(null)
 
   useEffect(() => {
     const getUser = async () => {
@@ -29,6 +30,7 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
+              <Link href="/" className="text-xl font-bold text-blue-600">
                 M&A Dataroom
               </Link>
             </div>
